@@ -20,27 +20,24 @@ def f3(a):
     n_pairs = len(pairs)
     return n_pairs
 
-def test():
-    print("Starting test...")
-    n = int(1e3)
-    a = np.random.randint(10, size=(n))
-    
-    print("Running function...")
+def test(function, n, array):
+    print("Testing function: {0}".format(function.__name__))    
     start_time = time.time()
-    #result = f1(a)
-    #result = f2(a)
-    result = f3(a)
+    print("Running function...")
+    result = function(array)
     end_time = time.time()
-    
     run_time = end_time - start_time
     
     print(f"n: {n}")
     print(f"result: {result}")
     print("run time: {0:.3f} seconds".format(run_time))
 
+    return run_time
 
 def main():
-    test()
+    n = int(2e3)
+    array = np.random.randint(10, size=(n))
+    run_time = test(f3, n, array)
 
 if __name__ == "__main__":
     main()
