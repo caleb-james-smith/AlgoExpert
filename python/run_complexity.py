@@ -1,7 +1,8 @@
-# complexity.py
+# run_complexity.py
 
 import numpy as np
 import time
+from complexity import Complexity
 
 def f1(a):
     return 1 + a[0]
@@ -35,9 +36,15 @@ def test(function, n, array):
     return run_time
 
 def main():
-    n = int(2e3)
-    array = np.random.randint(10, size=(n))
-    run_time = test(f3, n, array)
+    #n = int(1e3)
+    #array = np.random.randint(10, size=(n))
+    #run_time = test(f3, n, array)
+    
+    complexity = Complexity()
+    n_values = [1e3, 2e3, 3e3, 4e3]
+    n_values = [int(n) for n in n_values]
+    complexity.collect_data("f3", f3, n_values)
+    #complexity.plot_data()
 
 if __name__ == "__main__":
     main()
