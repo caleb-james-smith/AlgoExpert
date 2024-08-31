@@ -29,7 +29,7 @@ class Complexity:
             print(f"n: {n}, run time: {run_time:.3f} seconds")
             row = [n, run_time]
             data.append(row)
-        print(data)
+        print(f"data: {data}")
         output_file = "{0}/{1}.csv".format(self.data_dir, name)
         tools.makeDir(self.data_dir)
         tools.writeCSV(output_file, data)
