@@ -1,5 +1,6 @@
 # complexity.py
 
+import matplotlib.pyplot as plt
 import numpy as np
 import time
 import tools
@@ -32,7 +33,34 @@ class Complexity:
         tools.makeDir(self.data_dir)
         tools.writeCSV(output_file, data)
 
-    def plot_data(self):
-        print("Plotting data...")
-
+    def plot_data(self, name):
+        print(f"Plotting data for function {name}...")
+        
+        # load data from file
+        input_file = "{0}/{1}.csv".format(self.data_dir, name)
+        data = tools.readCSV(input_file)
+        
+        # get header and points from data
+        # note: x,y values, must convert from string to float
+        header = data[0]
+        points = data[1:]
+        x_label = header[0]
+        y_label = header[1]
+        x_values = [float(point[0]) for point in points]
+        y_values = [float(point[1]) for point in points]
+        print(f"header: {header}")
+        print(f"x_values: {x_values}")
+        print(f"y_values: {y_values}")
+        
+        # plot data
+        fig, ax = plt.subplots(figsize=(6, 6))
+        xlim = [0, 5e3]
+        ylim = [0, 5]
+        plt.plot(x_values, y_values, 'o')
+        ax.set_xlim(xlim)
+        ax.set_ylim(ylim)
+        ax.set_title(f"run time for function {name}")
+        ax.set_xlabel(x_label)
+        ax.set_ylabel(y_label)
+        plt.show()
 

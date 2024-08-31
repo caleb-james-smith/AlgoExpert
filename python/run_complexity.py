@@ -44,8 +44,8 @@ def main():
     complexity = Complexity(data_dir)
     n_values = [1e3, 2e3, 3e3, 4e3]
     n_values = [int(n) for n in n_values]
-    complexity.collect_data("f3", f3, n_values)
-    #complexity.plot_data()
+    #complexity.collect_data("f3", f3, n_values)
+    complexity.plot_data("f3")
 
 if __name__ == "__main__":
     main()
