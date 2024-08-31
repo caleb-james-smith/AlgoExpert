@@ -6,9 +6,10 @@ import time
 import tools
 
 class Complexity:
-    def __init__(self, data_dir):
+    def __init__(self, data_dir, plot_dir):
         print("I am Complexity... fear me!")
         self.data_dir = data_dir
+        self.plot_dir = plot_dir
     
     def get_run_time(self, function, array):
         start_time = time.time()
@@ -62,5 +63,13 @@ class Complexity:
         ax.set_title(f"run time for function {name}")
         ax.set_xlabel(x_label)
         ax.set_ylabel(y_label)
-        plt.show()
+        #plt.show()
+        
+        # save plot
+        tools.makeDir(self.plot_dir)
+        output_png = "{0}/{1}.png".format(self.plot_dir, name)
+        output_pdf = "{0}/{1}.pdf".format(self.plot_dir, name)
+        plt.savefig(output_png, bbox_inches='tight')
+        plt.savefig(output_pdf, bbox_inches='tight')
+        plt.close('all')
 

@@ -41,7 +41,8 @@ def main():
     #run_time = test(f3, n, array)
     
     data_dir = "data"
-    complexity = Complexity(data_dir)
+    plot_dir = "plots"
+    complexity = Complexity(data_dir, plot_dir)
     n_values = [1e3, 2e3, 3e3, 4e3]
     n_values = [int(n) for n in n_values]
     #complexity.collect_data("f3", f3, n_values)
