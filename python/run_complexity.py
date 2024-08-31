@@ -43,10 +43,12 @@ def main():
     data_dir = "data"
     plot_dir = "plots"
     complexity = Complexity(data_dir, plot_dir)
-    n_values = [1e3, 2e3, 3e3, 4e3]
+    n_values = [1e3, 2e3, 3e3, 4e3, 5e3]
     n_values = [int(n) for n in n_values]
+    xlim = [0, 1e4]
+    ylim = [0, 10]
     #complexity.collect_data("f3", f3, n_values)
-    complexity.plot_data("f3")
+    complexity.plot_data("f3", xlim, ylim)
 
 if __name__ == "__main__":
     main()

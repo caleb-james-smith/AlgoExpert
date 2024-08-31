@@ -34,7 +34,7 @@ class Complexity:
         tools.makeDir(self.data_dir)
         tools.writeCSV(output_file, data)
 
-    def plot_data(self, name):
+    def plot_data(self, name, xlim, ylim):
         print(f"Plotting data for function {name}...")
         
         # load data from file
@@ -55,15 +55,12 @@ class Complexity:
         
         # plot data
         fig, ax = plt.subplots(figsize=(6, 6))
-        xlim = [0, 5e3]
-        ylim = [0, 5]
         plt.plot(x_values, y_values, 'o')
         ax.set_xlim(xlim)
         ax.set_ylim(ylim)
         ax.set_title(f"run time for function {name}")
         ax.set_xlabel(x_label)
         ax.set_ylabel(y_label)
-        #plt.show()
         
         # save plot
         tools.makeDir(self.plot_dir)
