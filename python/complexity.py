@@ -26,7 +26,7 @@ class Complexity:
         for n in n_values:
             array = np.random.randint(10, size=(n))
             run_time = self.get_run_time(function, array)
-            print(f"n: {n}, run time: {run_time:.3f} seconds")
+            print(f" - n: {n}, run time: {run_time:.3f} seconds")
             row = [n, run_time]
             data.append(row)
         print(f"data: {data}")

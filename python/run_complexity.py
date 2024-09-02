@@ -35,27 +35,29 @@ def test(function, n, array):
 
     return run_time
 
+def run_f3(run_collect_data, run_plot_data, data_dir, plot_dir):
+    # create complexity object
+    complexity = Complexity(data_dir, plot_dir)
+    
+    # collect data
+    if run_collect_data:
+        n_values = np.linspace(0, 5, 11)
+        n_values = [int(1e3 * n) for n in n_values]
+        print(f"n_values: {n_values}")
+        complexity.collect_data("f3", f3, n_values)
+    # plot data
+    if run_plot_data:
+        xlim = [0, 1e4]
+        ylim = [0, 10]
+        complexity.plot_data("f3", xlim, ylim)
+
 def main():
     run_collect_data = True
     run_plot_data    = True
-    
-    #n = int(1e3)
-    #array = np.random.randint(10, size=(n))
-    #run_time = test(f3, n, array)
-    
     data_dir = "data"
     plot_dir = "plots"
-    complexity = Complexity(data_dir, plot_dir)
-    #n_values = [1e3, 2e3, 3e3, 4e3, 5e3]
-    n_values = np.linspace(0, 5, 11)
-    n_values = [int(1e3 * n) for n in n_values]
-    print(f"n_values: {n_values}")
-    xlim = [0, 1e4]
-    ylim = [0, 10]
-    if run_collect_data:
-        complexity.collect_data("f3", f3, n_values)
-    if run_plot_data:
-        complexity.plot_data("f3", xlim, ylim)
 
+    run_f3(run_collect_data, run_plot_data, data_dir, plot_dir)
+    
 if __name__ == "__main__":
     main()
