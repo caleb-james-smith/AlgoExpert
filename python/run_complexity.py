@@ -43,7 +43,8 @@ def run_f1(run_collect_data, run_plot_data, data_dir, plot_dir):
     if run_collect_data:
         n_values = np.linspace(0.5, 5.0, 10)
         n_values = [int(1e7 * n) for n in n_values]
-        print(f"n_values: {n_values}")
+        # print to debug
+        #print(f"n_values: {n_values}")
         complexity.collect_data("f1", f1, n_values)
     # plot data
     if run_plot_data:
@@ -59,7 +60,8 @@ def run_f2(run_collect_data, run_plot_data, data_dir, plot_dir):
     if run_collect_data:
         n_values = np.linspace(0.5, 5.0, 10)
         n_values = [int(1e7 * n) for n in n_values]
-        print(f"n_values: {n_values}")
+        # print to debug
+        #print(f"n_values: {n_values}")
         complexity.collect_data("f2", f2, n_values)
     # plot data
     if run_plot_data:
@@ -75,7 +77,8 @@ def run_f3(run_collect_data, run_plot_data, data_dir, plot_dir):
     if run_collect_data:
         n_values = np.linspace(0.5, 5.0, 10)
         n_values = [int(1e3 * n) for n in n_values]
-        print(f"n_values: {n_values}")
+        # print to debug
+        #print(f"n_values: {n_values}")
         complexity.collect_data("f3", f3, n_values)
     # plot data
     if run_plot_data:
@@ -84,14 +87,14 @@ def run_f3(run_collect_data, run_plot_data, data_dir, plot_dir):
         complexity.plot_data("f3", xlim, ylim)
 
 def main():
-    run_collect_data = True
+    run_collect_data = False
     run_plot_data    = True
     data_dir = "data"
     plot_dir = "plots"
 
     run_f1(run_collect_data, run_plot_data, data_dir, plot_dir)
-    #run_f2(run_collect_data, run_plot_data, data_dir, plot_dir)
-    #run_f3(run_collect_data, run_plot_data, data_dir, plot_dir)
+    run_f2(run_collect_data, run_plot_data, data_dir, plot_dir)
+    run_f3(run_collect_data, run_plot_data, data_dir, plot_dir)
     
 if __name__ == "__main__":
     main()

@@ -29,7 +29,10 @@ class Complexity:
             print(f" - n: {n}, run time: {run_time:.3f} seconds")
             row = [n, run_time]
             data.append(row)
-        print(f"data: {data}")
+        
+        # print to debug
+        #print(f"data: {data}")
+        
         output_file = "{0}/{1}.csv".format(self.data_dir, name)
         tools.makeDir(self.data_dir)
         tools.writeCSV(output_file, data)
@@ -45,13 +48,17 @@ class Complexity:
         # note: x,y values, must convert from string to float
         header = data[0]
         points = data[1:]
-        x_label = header[0]
-        y_label = header[1]
+        x_label = "{0} (array size)".format(header[0])
+        y_label = "{0} (seconds)".format(header[1])
+        x_label = x_label.replace('_', ' ')
+        y_label = y_label.replace('_', ' ')
         x_values = [float(point[0]) for point in points]
         y_values = [float(point[1]) for point in points]
-        print(f"header: {header}")
-        print(f"x_values: {x_values}")
-        print(f"y_values: {y_values}")
+        
+        # print to debug
+        #print(f"header: {header}")
+        #print(f"x_values: {x_values}")
+        #print(f"y_values: {y_values}")
         
         # plot data
         fig, ax = plt.subplots(figsize=(6, 6))
