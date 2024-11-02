@@ -87,7 +87,7 @@ def run_f3(run_collect_data, run_plot_data, data_dir, plot_dir):
         complexity.plot_data("f3", xlim, ylim)
 
 def main():
-    run_collect_data = False
+    run_collect_data = True
     run_plot_data    = True
     data_dir = "data"
     plot_dir = "plots"
