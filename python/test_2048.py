@@ -27,12 +27,43 @@ def push_left_v2(array):
         output.append(0)
     return output
 
+# given an array and two indices,
+# determine if a nonzero value is between them
+def value_is_in_between(array, i, j):
+    for index in range(i + 1, j):
+        if array[index] > 0:
+            return True
+    return False
+
+# given an input array,
+# update values from push left
+# FIXME:
+# A combined number should not be combined again!
+# Can we keep track of indices that have already been combined?
+# We may be safe from this issue by using the original array
+# when checking for in between values.
+def update_values_left(array):
+    n = len(array)
+    output = array.copy()
+    for i in range(n - 1):
+        for j in range(i + 1, n):
+            x = output[i]
+            y = output[j]
+            # require that x and y are nonzero and equal
+            if x > 0 and y > 0 and x == y:
+                val_in_between = value_is_in_between(array, i, j)
+                if not val_in_between:
+                    output[i] = x + y
+                    output[j] = 0
+    return output
+
 # given an input array,
 # return new array from push left
 def push_left(array):
-    n = len(array)
+    updated_array = update_values_left(array)
+    n = len(updated_array)
     output = []
-    for value in array:
+    for value in updated_array:
         if value > 0:
             output.append(value)
     while len(output) < n:
@@ -59,12 +90,25 @@ def test_pushing():
     arrays.append([0, 1, 0, 1])
     arrays.append([0, 0, 1, 1])
     
-    arrays.append([1, 2, 0, 0])
-    arrays.append([1, 0, 2, 0])
-    arrays.append([1, 0, 0, 2])
-    arrays.append([0, 1, 2, 0])
-    arrays.append([0, 1, 0, 2])
-    arrays.append([0, 0, 1, 2])
+    arrays.append([1, 1, 1, 0])
+    arrays.append([1, 1, 0, 1])
+    arrays.append([1, 0, 1, 1])
+    arrays.append([0, 1, 1, 1])
+    
+    arrays.append([1, 1, 1, 1])
+    
+    arrays.append([1, 1, 2, 0])
+    arrays.append([1, 1, 0, 2])
+    arrays.append([1, 2, 1, 2])
+    arrays.append([1, 1, 2, 2])
+    arrays.append([2, 2, 2, 2])
+    
+    #arrays.append([1, 2, 0, 0])
+    #arrays.append([1, 0, 2, 0])
+    #arrays.append([1, 0, 0, 2])
+    #arrays.append([0, 1, 2, 0])
+    #arrays.append([0, 1, 0, 2])
+    #arrays.append([0, 0, 1, 2])
 
     for array in arrays:
         output_left  = push_left(array)
