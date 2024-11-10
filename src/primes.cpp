@@ -63,11 +63,51 @@ void test_num_divisors(int max_val)
     }
 }
 
-int main()
+std::vector<int> get_primes_v1(int max_val)
 {
-    int max_val = 10;
-    test_num_divisors(max_val);
-    return 0;
+    std::vector<int> output;
+    for (int n = 1; n <= max_val; n++)
+    {
+        int num_divisors = get_num_divisors(n);
+        // if n has two divisors, it is prime
+        if (num_divisors == 2)
+        {
+            output.push_back(n);
+        }
+    }
+    return output;
 }
 
+void printVector(std::vector<int> my_vector)
+{
+    printf("[");
+    for (int i = 0; i < my_vector.size(); i++)
+    {
+        if (i == 0)
+        {
+            printf("%d", my_vector[i]);
+        }
+        else
+        {
+            printf(", %d", my_vector[i]);
+        }
+    }
+    printf("]\n");
+}
+
+int main()
+{
+    int max_val = 100;
+    
+    //test_num_divisors(max_val);
+    
+    std::vector<int> primes_v1 = get_primes_v1(max_val);
+    int n_primes_v1 = primes_v1.size();
+    
+    printf("primes_v1: ");
+    printVector(primes_v1);
+    printf("n_primes_v1: %d\n", n_primes_v1);
+    
+    return 0;
+}
 

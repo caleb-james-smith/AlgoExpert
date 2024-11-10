@@ -55,7 +55,7 @@ def get_primes_v2(max_val):
     return output
 
 def main():
-    max_val     = int(29)
+    max_val     = int(100)
     primes_v1   = get_primes_v1(max_val)
     primes_v2   = get_primes_v2(max_val)
     n_primes_v1 = len(primes_v1)
