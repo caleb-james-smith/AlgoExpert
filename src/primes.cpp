@@ -34,6 +34,23 @@
 
 #include <iostream>
 
+void printVector(std::vector<int> my_vector)
+{
+    printf("[");
+    for (int i = 0; i < my_vector.size(); i++)
+    {
+        if (i == 0)
+        {
+            printf("%d", my_vector[i]);
+        }
+        else
+        {
+            printf(", %d", my_vector[i]);
+        }
+    }
+    printf("]\n");
+}
+
 std::vector<int> get_divisors(int n)
 {
     std::vector<int> divisors;
@@ -78,21 +95,34 @@ std::vector<int> get_primes_v1(int max_val)
     return output;
 }
 
-void printVector(std::vector<int> my_vector)
+std::vector<int> get_primes_v2(int max_val)
 {
-    printf("[");
-    for (int i = 0; i < my_vector.size(); i++)
+    std::vector<bool> numbers(max_val + 1, true);
+    numbers[0] = false;
+    numbers[1] = false;
+
+    for (int p = 2; p <= max_val; p++)
     {
-        if (i == 0)
+        if (numbers[p])
         {
-            printf("%d", my_vector[i]);
-        }
-        else
-        {
-            printf(", %d", my_vector[i]);
+            for (int i = 2 * p; i <= max_val; i += p)
+            {
+                numbers[i] = false;
+            }
         }
     }
-    printf("]\n");
+
+    std::vector<int> output;
+
+    for (int i = 0; i < max_val + 1; i++)
+    {
+        if (numbers[i])
+        {
+            output.push_back(i);
+        }
+    }
+
+    return output;
 }
 
 int main()
@@ -102,11 +132,17 @@ int main()
     //test_num_divisors(max_val);
     
     std::vector<int> primes_v1 = get_primes_v1(max_val);
+    std::vector<int> primes_v2 = get_primes_v2(max_val);
     int n_primes_v1 = primes_v1.size();
+    int n_primes_v2 = primes_v2.size();
     
     printf("primes_v1: ");
     printVector(primes_v1);
     printf("n_primes_v1: %d\n", n_primes_v1);
+    
+    printf("primes_v2: ");
+    printVector(primes_v2);
+    printf("n_primes_v2: %d\n", n_primes_v2);
     
     return 0;
 }
